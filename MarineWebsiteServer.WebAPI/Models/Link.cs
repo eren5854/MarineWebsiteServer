@@ -1,6 +1,8 @@
-﻿namespace MarineWebsiteServer.WebAPI.Models;
+﻿using MarineWebsiteServer.WebAPI.Entities;
 
-public sealed class Link
+namespace MarineWebsiteServer.WebAPI.Models;
+
+public sealed class Link : Entity
 {
     public string Title { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
