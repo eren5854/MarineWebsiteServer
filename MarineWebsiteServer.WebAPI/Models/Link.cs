@@ -8,6 +8,6 @@ public sealed class Link : Entity
     public string Url { get; set; } = string.Empty;
     public string? Icon { get; set; }
 
-    public Guid? HomeId { get; set; }
-    public Home? Home { get; set; }
+    //public Guid? HomeId { get; set; }
+    //public Home? Home { get; set; }
 }

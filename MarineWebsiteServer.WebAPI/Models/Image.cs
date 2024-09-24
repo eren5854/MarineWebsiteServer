@@ -10,4 +10,7 @@ public sealed class Image : Entity
 
     public Guid? ServiceId { get; set; }
     public Service? Service { get; set; }
+
+    public Guid? AboutId { get; set; }
+    public About? About { get; set; }
 }

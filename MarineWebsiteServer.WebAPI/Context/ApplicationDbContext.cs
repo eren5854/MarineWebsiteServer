@@ -13,6 +13,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
     }
 
     public DbSet<Home> Homes { get; set; }
+    public DbSet<HomeImage> HomeImages { get; set; }
     public DbSet<About> Abouts { get; set; }
     public DbSet<Contact> Contacts { get; set; }
     public DbSet<HomeIcon> HomeIcons { get; set; }

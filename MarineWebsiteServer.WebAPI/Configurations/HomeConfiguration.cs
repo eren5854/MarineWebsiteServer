@@ -21,7 +21,7 @@ public sealed class HomeConfiguration : IEntityTypeConfiguration<Home>
             .HasMaxLength(100);
 
         builder
-            .HasMany(p => p.Icons)
+            .HasMany(p => p.HomeImages)
             .WithOne(p => p.Home)
             .HasForeignKey(p => p.HomeId);
     }
