@@ -10,6 +10,6 @@ public class Entity
     public bool IsDeleted { get; set; }
     public string CreatedBy { get; set; } = string.Empty;
     public DateTime CreatedDate { get; set; }
-    public string? UpdatdBy { get; set; }
-    public DateTime? UpdatdDate { get; set; }
+    public string? UpdatedBy { get; set; }
+    public DateTime? UpdatedDate { get; set; }
 }

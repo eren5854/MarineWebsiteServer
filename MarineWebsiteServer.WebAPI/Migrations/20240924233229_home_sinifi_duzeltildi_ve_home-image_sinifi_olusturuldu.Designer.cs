@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarineWebsiteServer.WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240907173231_gerekli_siniflar_olusturuldu")]
-    partial class gerekli_siniflar_olusturuldu
+    [Migration("20240924233229_home_sinifi_duzeltildi_ve_home-image_sinifi_olusturuldu")]
+    partial class home_sinifi_duzeltildi_ve_homeimage_sinifi_olusturuldu
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,13 +133,14 @@ namespace MarineWebsiteServer.WebAPI.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MainImage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Subtitle")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -157,7 +158,7 @@ namespace MarineWebsiteServer.WebAPI.Migrations
                     b.ToTable("Homes");
                 });
 
-            modelBuilder.Entity("MarineWebsiteServer.WebAPI.Models.HomeIcon", b =>
+            modelBuilder.Entity("MarineWebsiteServer.WebAPI.Models.HomeImage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -173,18 +174,13 @@ namespace MarineWebsiteServer.WebAPI.Migrations
                     b.Property<Guid?>("HomeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Icon")
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Subtitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatdBy")
@@ -197,50 +193,7 @@ namespace MarineWebsiteServer.WebAPI.Migrations
 
                     b.HasIndex("HomeId");
 
-                    b.ToTable("HomeIcon");
-                });
-
-            modelBuilder.Entity("MarineWebsiteServer.WebAPI.Models.Link", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("HomeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatdBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatdDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HomeId");
-
-                    b.ToTable("Link");
+                    b.ToTable("HomeImages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -263,19 +216,10 @@ namespace MarineWebsiteServer.WebAPI.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("MarineWebsiteServer.WebAPI.Models.HomeIcon", b =>
+            modelBuilder.Entity("MarineWebsiteServer.WebAPI.Models.HomeImage", b =>
                 {
                     b.HasOne("MarineWebsiteServer.WebAPI.Models.Home", "Home")
-                        .WithMany("Icons")
-                        .HasForeignKey("HomeId");
-
-                    b.Navigation("Home");
-                });
-
-            modelBuilder.Entity("MarineWebsiteServer.WebAPI.Models.Link", b =>
-                {
-                    b.HasOne("MarineWebsiteServer.WebAPI.Models.Home", "Home")
-                        .WithMany("Links")
+                        .WithMany("HomeImages")
                         .HasForeignKey("HomeId");
 
                     b.Navigation("Home");
@@ -283,9 +227,7 @@ namespace MarineWebsiteServer.WebAPI.Migrations
 
             modelBuilder.Entity("MarineWebsiteServer.WebAPI.Models.Home", b =>
                 {
-                    b.Navigation("Icons");
-
-                    b.Navigation("Links");
+                    b.Navigation("HomeImages");
                 });
 #pragma warning restore 612, 618
         }

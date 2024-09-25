@@ -14,15 +14,6 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
 
     public DbSet<Home> Homes { get; set; }
     public DbSet<HomeImage> HomeImages { get; set; }
-    public DbSet<About> Abouts { get; set; }
-    public DbSet<Contact> Contacts { get; set; }
-    public DbSet<HomeIcon> HomeIcons { get; set; }
-    public DbSet<Image> Images { get; set; }
-    public DbSet<Information> Informations { get; set; }
-    public DbSet<Link> Links { get; set; }
-    public DbSet<Quality> Qualities { get; set; }
-    public DbSet<Referance> Referances { get; set; }
-    public DbSet<Service> Services { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -31,11 +22,6 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
         builder.Ignore<IdentityUserLogin<Guid>>();
         builder.Ignore<IdentityUserToken<Guid>>();
         builder.Ignore<IdentityUserRole<Guid>>();
-
-        //builder.Entity<Home>()
-        //    .HasMany(h => h.Icons)
-        //    .WithOne(h => h.Home)
-        //    .HasForeignKey(h => h.HomeId);
 
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }

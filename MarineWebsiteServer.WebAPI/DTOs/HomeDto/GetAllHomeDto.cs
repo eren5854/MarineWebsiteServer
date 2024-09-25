@@ -1,11 +1,10 @@
 ﻿using MarineWebsiteServer.WebAPI.DTOs.HomeImageDto;
-using MarineWebsiteServer.WebAPI.Models;
 
 namespace MarineWebsiteServer.WebAPI.DTOs.HomeDto;
 
-public sealed record UpdateHomeDto(
+public sealed record GetAllHomeDto(
     Guid Id,
     string Title,
     string Subtitle,
     string Text,
-    List<UpdateHomeImageDto?> HomeImages);
+    List<GetAllHomeImageDto?> GetAllHomeImage);
