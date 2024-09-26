@@ -31,7 +31,7 @@ public sealed class AboutRepository(
 
     public async Task<Result<List<About>>> GetAll(CancellationToken cancellationToken)
     {
-        var abouts = await context.Abouts.ToListAsync(cancellationToken);
+        var abouts = await context.Abouts.Where(p => !p.IsDeleted).ToListAsync(cancellationToken);
         return Result<List<About>>.Succeed(abouts);
     }
 

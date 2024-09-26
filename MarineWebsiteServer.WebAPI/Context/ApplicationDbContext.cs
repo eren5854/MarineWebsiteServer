@@ -19,6 +19,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
     public DbSet<Information> Informations { get; set; }
     public DbSet<Link> Links { get; set; }
     public DbSet<Layout> Layouts { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MarineWebsiteServer.WebAPI.DTOs.AboutDto;
+using MarineWebsiteServer.WebAPI.DTOs.ContactDto;
 using MarineWebsiteServer.WebAPI.DTOs.HomeDto;
 using MarineWebsiteServer.WebAPI.DTOs.HomeImageDto;
 using MarineWebsiteServer.WebAPI.DTOs.InformationDto;
@@ -34,5 +35,7 @@ public class MappingProfile : Profile
 
         CreateMap<CreateLayoutDto, Layout>();
         CreateMap<UpdateLayoutDto, Layout>();
+
+        CreateMap<CreateContactDto, Contact>();
     }
 }
