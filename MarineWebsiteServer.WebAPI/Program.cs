@@ -79,7 +79,7 @@ builder.Services.AddSwaggerGen(setup =>
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.Http,
         Scheme = JwtBearerDefaults.AuthenticationScheme,
-        Description = "Put **_ONLY_** yourt JWT Bearer token on textbox below!",
+        Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
 
         Reference = new OpenApiReference
         {
