@@ -31,4 +31,51 @@ public sealed class AuthService(
         var loginResponse = await jwtProvider.CreateToken(user);
         return loginResponse;
     }
+
+    public async Task<Result<string>> ChangePassword(ChangePasswordDto request, CancellationToken cancellationToken)
+    {
+        AppUser? user = await userManager.FindByIdAsync(request.Id.ToString());
+        if (user is null)
+        {
+            return Result<string>.Failure("User not found");
+        }
+
+        IdentityResult result = await userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+        if (!result.Succeeded)
+        {
+            return Result<string>.Failure("Old password is wrong");
+        }
+
+        return Result<string>.Succeed("Password change is successful");
+    }
+
+    public async Task<Result<string>> ForgotPassword(ForgotPasswordDto request, CancellationToken cancellationToken)
+    {
+        AppUser? user = await userManager.FindByEmailAsync(request.Email);
+        if (user is null)
+        {
+            return Result<string>.Failure("User not found");
+        }
+
+        string token = await userManager.GeneratePasswordResetTokenAsync(user);
+
+        return token;
+    }
+
+    public async Task<Result<string>> ChangePasswordUsingToken(ChangePasswordUsingTokenDto request, CancellationToken cancellationToken)
+    {
+        AppUser? user = await userManager.FindByEmailAsync(request.Email);
+        if (user is null)
+        {
+            return Result<string>.Failure("User not found");
+        }
+
+        IdentityResult result = await userManager.ResetPasswordAsync(user, request.Token, request.NewPassword);
+        if (!result.Succeeded)
+        {
+            return Result<string>.Failure("Error ");
+        }
+
+        return Result<string>.Succeed("New password is successful");
+    }
 }
