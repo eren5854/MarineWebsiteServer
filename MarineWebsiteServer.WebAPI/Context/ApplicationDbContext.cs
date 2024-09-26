@@ -14,6 +14,11 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
 
     public DbSet<Home> Homes { get; set; }
     public DbSet<HomeImage> HomeImages { get; set; }
+    public DbSet<About> Abouts { get; set; }
+    public DbSet<Portfolio> Portfolios { get; set; }
+    public DbSet<Information> Informations { get; set; }
+    public DbSet<Link> Links { get; set; }
+    public DbSet<Layout> Layouts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

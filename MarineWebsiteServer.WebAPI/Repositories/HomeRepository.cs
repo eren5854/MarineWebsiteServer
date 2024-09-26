@@ -11,11 +11,6 @@ namespace MarineWebsiteServer.WebAPI.Repositories;
 public sealed class HomeRepository(
     ApplicationDbContext context)
 {
-    public async Task<Result<bool>> Any(Expression<Func<Home, bool>> predicate, CancellationToken cancellationToken)
-    {
-        return await context.Homes.AnyAsync(predicate, cancellationToken);
-    }
-
     public async Task<Result<string>> Create(Home home, CancellationToken cancellationToken)
     {
         await context.AddAsync(home, cancellationToken);

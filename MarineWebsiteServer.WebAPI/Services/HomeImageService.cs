@@ -26,6 +26,21 @@ public sealed class HomeImageService(
 
     public async Task<Result<List<HomeImage>>> GetAll(CancellationToken cancellationToken)
     {
+        return await homeImageRepository.GetAll(cancellationToken);
+    }
 
+    public async Task<Result<string>> Update(UpdateHomeImageDto request, CancellationToken cancellationToken)
+    {
+        HomeImage? homeImage = homeImageRepository.GetById(request.Id);
+        if (homeImage is null)
+        {
+            return Result<string>.Failure("Kayıt bulunamadı");
+        }
+
+        mapper.Map(request, homeImage);
+        homeImage.UpdatedDate = DateTime.Now;
+        homeImage.UpdatedBy = "Admin";
+
+        return await homeImageRepository.Update(homeImage, cancellationToken);
     }
 }

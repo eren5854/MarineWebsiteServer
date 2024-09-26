@@ -7,4 +7,4 @@ public sealed record CreateHomeDto(
     string Title,
     string Subtitle,
     string Text,
-    List<CreateHomeImageDto?> HomeImages);
+    List<CreateHomeImageDto>? HomeImages);

@@ -41,6 +41,15 @@ builder.Services.AddScoped<HomeService>();
 builder.Services.AddScoped<HomeImageRepository>();
 builder.Services.AddScoped<HomeImageService>();
 
+builder.Services.AddScoped<AboutRepository>();
+builder.Services.AddScoped<AboutService>();
+
+builder.Services.AddScoped<PortfolioRepository>();
+builder.Services.AddScoped<PortfolioService>();
+
+builder.Services.AddScoped<InformationRepository>();
+builder.Services.AddScoped<InformationService>();
+
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 builder.Services.AddControllers();
@@ -56,6 +65,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
