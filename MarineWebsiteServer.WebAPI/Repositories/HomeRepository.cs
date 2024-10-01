@@ -45,28 +45,32 @@ public sealed class HomeRepository(
         return Result<string>.Succeed("Silme işlemi başarılı");
     }
 
-    public async Task<Result<List<GetAllHomeDto>>> GetAll(CancellationToken cancellationToken)
+    public async Task<Result<List<Home>>> GetAll(CancellationToken cancellationToken)
     {
-        var homes = await context
-        .Homes
-        .Include(h => h.HomeImages) // HomeImages ile ilişkili verileri dahil ediyoruz
-        .Where(p => !p.IsDeleted)
-        .ToListAsync(cancellationToken);
+        //var homes = await context
+        //.Homes
+        //.Include(h => h.HomeImages) // HomeImages ile ilişkili verileri dahil ediyoruz
+        //.Where(p => !p.IsDeleted)
+        //.ToListAsync(cancellationToken);
 
-        // Her bir home nesnesini manuel olarak GetAllHomeDto'ya dönüştürüyoruz
-        var homeDtos = homes.Select(home => new GetAllHomeDto(
-            home.Id,
-            home.Title,
-            home.Subtitle,
-            home.Text,
-            home.HomeImages.Select(img => new GetAllHomeImageDto(
-                img.Id,
-                img.Title,
-                img.Image
-            )).ToList() // Tüm HomeImage'ları liste olarak ekliyoruz
-        )).ToList();
+        //// Her bir home nesnesini manuel olarak GetAllHomeDto'ya dönüştürüyoruz
+        //var homeDtos = homes.Select(home => new GetAllHomeDto(
+        //    home.Id,
+        //    home.Title,
+        //    home.Subtitle,
+        //    home.Text,
+        //    home.HomeImages.Select(img => new GetAllHomeImageDto(
+        //        img.Id,
+        //        img.Title,
+        //        img.Image
+        //    )).ToList() // Tüm HomeImage'ları liste olarak ekliyoruz
+        //)).ToList();
 
-        return Result<List<GetAllHomeDto>>.Succeed(homeDtos);
+        var homes = await context.Homes.Where(p => !p.IsDeleted).ToListAsync(cancellationToken);
+
+        return Result<List<Home>>.Succeed(homes);
+        //return Result<List<GetAllHomeDto>>.Succeed(homeDto);
+
     }
 
     public Home? GetById(Guid Id)

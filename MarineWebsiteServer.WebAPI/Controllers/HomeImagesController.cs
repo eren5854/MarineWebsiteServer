@@ -9,7 +9,7 @@ public class HomeImagesController(
     HomeImageService homeImageService) : ApiController
 {
     [HttpPost]
-    public async Task<IActionResult> Create(CreateHomeImageDto request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromForm]CreateHomeImageDto request, CancellationToken cancellationToken)
     {
         var response = await homeImageService.Create(request, cancellationToken);
         return StatusCode(response.StatusCode, response);
@@ -23,7 +23,7 @@ public class HomeImagesController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> Update(UpdateHomeImageDto request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update([FromForm]UpdateHomeImageDto request, CancellationToken cancellationToken)
     {
         var response = await homeImageService.Update(request, cancellationToken);
         return StatusCode(response.StatusCode, response);

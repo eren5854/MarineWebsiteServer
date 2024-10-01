@@ -59,6 +59,7 @@ public sealed class PortfolioService(
         if (response is not null)
         {
             image = FileService.FileSaveToServer(request.Image!, "wwwroot/Images/");
+            FileService.FileDeleteToServer("wwwroot/Images/" + portfolio.Image);
         }
 
         mapper.Map(request, portfolio);

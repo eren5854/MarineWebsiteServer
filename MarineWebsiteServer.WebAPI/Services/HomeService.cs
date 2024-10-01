@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ED.Result;
+using GenericFileService.Files;
 using MarineWebsiteServer.WebAPI.DTOs.HomeDto;
 using MarineWebsiteServer.WebAPI.Models;
 using MarineWebsiteServer.WebAPI.Repositories;
@@ -15,23 +16,23 @@ public sealed class HomeService(
         Home home = mapper.Map<Home>(request);
         home.CreatedBy = "Admin";
         home.CreatedDate = DateTime.Now;
-        if (request.HomeImages != null)
-        {
-            home.HomeImages = mapper.Map<List<HomeImage>>(request.HomeImages);
-            foreach (var homeImage in home.HomeImages)
-            {
-                homeImage.Home = home;
-                homeImage.CreatedBy = "Admin";
-                homeImage.CreatedDate = DateTime.Now;
-            }
+        //if (request.HomeImages != null)
+        //{
+        //    home.HomeImages = mapper.Map<List<HomeImage>>(request.HomeImages);
+        //    foreach (var homeImage in home.HomeImages)
+        //    {
+        //        homeImage.Home = home;
+        //        homeImage.CreatedBy = "Admin";
+        //        homeImage.CreatedDate = DateTime.Now;
+        //    }
 
-            //home.HomeImages = request.HomeImages.Select(imageDto => new HomeImage
-            //{
-            //    Title = imageDto.Title,
-            //    Image = imageDto.Image,
-            //    Home = home // Home nesnesini ilişkilendir
-            //}).ToList();
-        }
+        //    //home.HomeImages = request.HomeImages.Select(imageDto => new HomeImage
+        //    //{
+        //    //    Title = imageDto.Title,
+        //    //    Image = imageDto.Image,
+        //    //    Home = home // Home nesnesini ilişkilendir
+        //    //}).ToList();
+        //}
 
         return await homeRepository.Create(home, cancellationToken);
     }
@@ -41,9 +42,9 @@ public sealed class HomeService(
         return await homeRepository.DeleteById(id, cancellationToken);
     }
 
-    public Task<Result<List<GetAllHomeDto>>> GetAll(CancellationToken cancellationToken)
+    public async Task<Result<List<Home>>> GetAll(CancellationToken cancellationToken)
     {
-        return homeRepository.GetAll(cancellationToken);
+        return await homeRepository.GetAll(cancellationToken);
     }
 
     public async Task<Result<string>> Update(UpdateHomeDto request, CancellationToken cancellationToken)
@@ -58,13 +59,13 @@ public sealed class HomeService(
         home.UpdatedBy = "Admin";
         home.UpdatedDate = DateTime.Now;
 
-        home.HomeImages = mapper.Map<List<HomeImage>>(request.HomeImages);
-        foreach (var homeImage in home.HomeImages)
-        {
-            homeImage.Home = home;
-            homeImage.UpdatedBy = "Admin";
-            homeImage.UpdatedDate = DateTime.Now;
-        }
+        //home.HomeImages = mapper.Map<List<HomeImage>>(request.HomeImages);
+        //foreach (var homeImage in home.HomeImages)
+        //{
+        //    homeImage.Home = home;
+        //    homeImage.UpdatedBy = "Admin";
+        //    homeImage.UpdatedDate = DateTime.Now;
+        //}
 
         return await homeRepository.Update(home, cancellationToken);
     }

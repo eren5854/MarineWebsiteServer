@@ -22,16 +22,16 @@ public sealed class ContactService(
         //string subject = contact.Subject;
 
         //EmailConfigurations emailConfigurations = new(
-        //   "smtp-mail.outlook.com",
-        //   "yfzldswlpuswfrxk",
+        //   "mail.erendelibas.com",
+        //   "*****",
         //   587,
         //   false,
         //   true);
 
         //EmailModel<Stream> emailModel = new(
         //    emailConfigurations,
-        //    "erendelibas58@outlook.com",
-        //    new List<string> { "erendelibas58@outlook.com" ?? "" },
+        //    "info@erendelibas.com",
+        //    new List<string> { "info@erendelibas.com" ?? "" },
         //    subject,
         //    body,
         //    null);

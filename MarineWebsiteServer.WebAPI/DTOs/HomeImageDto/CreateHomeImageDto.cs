@@ -2,6 +2,6 @@
 
 public sealed record CreateHomeImageDto(
     string Title,
-    string Image,
+    IFormFile? Image,
     Guid HomeId);
 

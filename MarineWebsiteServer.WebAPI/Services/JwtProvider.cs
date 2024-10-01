@@ -19,13 +19,13 @@ public class JwtProvider(
         List<Claim> claims = new()
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.NameIdentifier, user.FullName),
+            new Claim(ClaimTypes.NameIdentifier, user.FullName!),
             new Claim(ClaimTypes.NameIdentifier, user.Email ?? ""),
             new Claim("UserName", user.UserName ?? ""),
             //new Claim("UserRole", user.UserRole.ToString())
         };
 
-        DateTime expires = DateTime.Now.AddMinutes(45);
+        DateTime expires = DateTime.Now.AddHours(24);
 
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Value.SecretKey));
 

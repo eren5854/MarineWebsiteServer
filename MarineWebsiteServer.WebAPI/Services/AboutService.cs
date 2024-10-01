@@ -59,6 +59,7 @@ public sealed class AboutService(
         if (response is not null)
         {
             image = FileService.FileSaveToServer(request.Image!, "wwwroot/Images/");
+            FileService.FileDeleteToServer("wwwroot/Images/" + about.Image);
         }
 
         mapper.Map(request, about);

@@ -30,40 +30,46 @@ public sealed class InformationRepository(
 
         information.IsDeleted = true;
 
-        if (information.Links != null)
-        {
-            foreach (var links in information.Links)
-            {
-                links.IsDeleted = true;
-            }
-        }
+        //if (information.Links != null)
+        //{
+        //    foreach (var links in information.Links)
+        //    {
+        //        links.IsDeleted = true;
+        //    }
+        //}
 
         context.Update(information);
         await context.SaveChangesAsync(cancellationToken);
         return Result<string>.Succeed("Information silme işlemi başarılı");
     }  
 
-    public async Task<Result<List<GetAllInformationDto>>> GetAlll(CancellationToken cancellationToken)
+    public async Task<Result<List<Information>>> GetAlll(CancellationToken cancellationToken)
     {
+        //var informations = await context
+        //    .Informations
+        //    .Include(h => h.Links)
+        //    .Where(p => !p.IsDeleted)
+        //    .ToListAsync(cancellationToken);
+
+        //var informationDtos = informations
+        //        .Select(i => new GetAllInformationDto(
+        //            i.Id,
+        //            i.Address,
+        //            i.Email,
+        //            i.PhoneNumber,
+        //            i.Links!.Where(p => !p.IsDeleted).Select(l => new GetAllLinkDto(
+        //                l.Id,
+        //                l.LinkIcon!,
+        //                l.LinkUrl)).ToList()
+        //                )).ToList();
+
         var informations = await context
             .Informations
-            .Include(h => h.Links)
             .Where(p => !p.IsDeleted)
+            .OrderBy(p => p.CreatedDate)
             .ToListAsync(cancellationToken);
 
-        var informationDtos = informations
-                .Select(i => new GetAllInformationDto(
-                    i.Id,
-                    i.Address,
-                    i.Email,
-                    i.PhoneNumber,
-                    i.Links!.Where(p => !p.IsDeleted).Select(l => new GetAllLinkDto(
-                        l.Id,
-                        l.LinkIcon!,
-                        l.LinkUrl)).ToList()
-                        )).ToList();
-
-        return Result<List<GetAllInformationDto>>.Succeed(informationDtos);
+        return Result<List<Information>>.Succeed(informations);
     }
 
     public Information? GetById(Guid Id)

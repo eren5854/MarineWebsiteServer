@@ -32,7 +32,7 @@ public sealed class HomeImageRepository(
 
     public async Task<Result<List<HomeImage>>> GetAll(CancellationToken cancellationToken)
     {
-        var homeImages = await context.HomeImages.ToListAsync(cancellationToken);
+        var homeImages = await context.HomeImages.Where(p => !p.IsDeleted).ToListAsync(cancellationToken);
         return Result<List<HomeImage>>.Succeed(homeImages);
     }
 

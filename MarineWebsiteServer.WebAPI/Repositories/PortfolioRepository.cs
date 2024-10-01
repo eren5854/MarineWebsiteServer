@@ -31,7 +31,7 @@ public sealed class PortfolioRepository(
 
     public async Task<Result<List<Portfolio>>> GetAll(CancellationToken cancellationToken)
     {
-        var portfolios = await context.Portfolios.ToListAsync(cancellationToken);
+        var portfolios = await context.Portfolios.Where(p => !p.IsDeleted).OrderBy(o => o.CreatedDate).ToListAsync(cancellationToken);
         return Result<List<Portfolio>>.Succeed(portfolios);
     }
 

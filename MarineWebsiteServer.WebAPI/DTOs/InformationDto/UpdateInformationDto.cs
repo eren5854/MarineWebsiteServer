@@ -6,5 +6,6 @@ public sealed record UpdateInformationDto(
     Guid Id,
     string Address,
     string Email,
-    string PhoneNumber,
-    List<UpdateLinkDto> UpdateLinks);
+    string PhoneNumber
+    //List<UpdateLinkDto> UpdateLinks
+    );

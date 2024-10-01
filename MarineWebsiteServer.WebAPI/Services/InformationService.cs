@@ -15,16 +15,16 @@ public sealed class InformationService(
         Information information = mapper.Map<Information>(request);
         information.CreatedBy = "Admin";
         information.CreatedDate = DateTime.Now;
-        if (request.CreateLinks != null)
-        {
-            information.Links = mapper.Map<List<Link>>(request.CreateLinks);
-            foreach (var link in information.Links)
-            {
-                link.Information = information;
-                link.CreatedDate = DateTime.Now;
-                link.CreatedBy = "Admin";
-            }
-        }
+        //if (request.CreateLinks != null)
+        //{
+        //    information.Links = mapper.Map<List<Link>>(request.CreateLinks);
+        //    foreach (var link in information.Links)
+        //    {
+        //        link.Information = information;
+        //        link.CreatedDate = DateTime.Now;
+        //        link.CreatedBy = "Admin";
+        //    }
+        //}
         return await informationRepository.Create(information,cancellationToken);
     }
 
@@ -33,7 +33,7 @@ public sealed class InformationService(
         return await informationRepository.DeleteById(id, cancellationToken);
     }
 
-    public async Task<Result<List<GetAllInformationDto>>> GetAll(CancellationToken cancellationToken)
+    public async Task<Result<List<Information>>> GetAll(CancellationToken cancellationToken)
     {
         return await informationRepository.GetAlll(cancellationToken);
     }
@@ -48,13 +48,13 @@ public sealed class InformationService(
         mapper.Map(request, information);
         information.UpdatedDate = DateTime.Now;
         information.UpdatedBy = "Admin";
-        information.Links = mapper.Map<List<Link>>(request.UpdateLinks);
-        foreach (var link in information.Links)
-        {
-            link.Information = information;
-            link.UpdatedDate = DateTime.Now;
-            link.UpdatedBy = "Admin";
-        }
+        //information.Links = mapper.Map<List<Link>>(request.UpdateLinks);
+        //foreach (var link in information.Links)
+        //{
+        //    link.Information = information;
+        //    link.UpdatedDate = DateTime.Now;
+        //    link.UpdatedBy = "Admin";
+        //}
         return await informationRepository.Update(information,cancellationToken);
     }
 }

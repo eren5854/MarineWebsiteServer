@@ -37,5 +37,8 @@ public class MappingProfile : Profile
         CreateMap<UpdateLayoutDto, Layout>();
 
         CreateMap<CreateContactDto, Contact>();
+
+        CreateMap<CreateLinkDto, Link>();
+        CreateMap<UpdateLinkDto, Link>();
     }
 }

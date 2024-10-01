@@ -3,4 +3,5 @@
 public sealed record UpdateHomeImageDto(
     Guid Id,
     string Title,
-    string Image);
+    IFormFile? Image,
+    Guid? HomeId);

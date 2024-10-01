@@ -7,5 +7,4 @@ public sealed record UpdateHomeDto(
     Guid Id,
     string Title,
     string Subtitle,
-    string Text,
-    List<UpdateHomeImageDto?> HomeImages);
+    string Text);
