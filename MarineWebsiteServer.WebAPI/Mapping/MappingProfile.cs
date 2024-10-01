@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MarineWebsiteServer.WebAPI.DTOs;
 using MarineWebsiteServer.WebAPI.DTOs.AboutDto;
 using MarineWebsiteServer.WebAPI.DTOs.ContactDto;
 using MarineWebsiteServer.WebAPI.DTOs.HomeDto;
@@ -15,6 +16,9 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<CreateUserDto, AppUser>();
+        CreateMap<UpdateUserDto, AppUser>();
+
         CreateMap<CreateHomeDto, Home>();
         CreateMap<UpdateHomeDto, Home>();
 

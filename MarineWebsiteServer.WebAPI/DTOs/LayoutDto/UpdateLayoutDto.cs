@@ -6,4 +6,4 @@ public sealed record UpdateLayoutDto(
     Guid Id,
     string Slogan,
     string ShortAboutText,
-    List<UpdateLinkDto> UpdateLinks);
+    IFormFile? Image);

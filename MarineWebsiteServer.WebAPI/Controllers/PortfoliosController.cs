@@ -1,6 +1,7 @@
 ﻿using MarineWebsiteServer.WebAPI.Abstraction;
 using MarineWebsiteServer.WebAPI.DTOs.PortfolioDto;
 using MarineWebsiteServer.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarineWebsiteServer.WebAPI.Controllers;
@@ -8,6 +9,7 @@ namespace MarineWebsiteServer.WebAPI.Controllers;
 public class PortfoliosController(
     PortfolioService portfolioService) : ApiController
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpPost]
     public async Task<IActionResult> Create([FromForm]CreatePortfolioDto request, CancellationToken cancellationToken)
     {
@@ -22,6 +24,7 @@ public class PortfoliosController(
         return StatusCode(response.StatusCode, response);
     }
 
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpPost]
     public async Task<IActionResult> Update([FromForm]UpdatePortfolioDto request, CancellationToken cancellationToken)
     {
@@ -29,6 +32,7 @@ public class PortfoliosController(
         return StatusCode(response.StatusCode, response);
     }
 
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpGet]
     public async Task<IActionResult> DeleteById(Guid Id,  CancellationToken cancellationToken)
     {

@@ -1,6 +1,7 @@
 ﻿using MarineWebsiteServer.WebAPI.Abstraction;
 using MarineWebsiteServer.WebAPI.DTOs;
 using MarineWebsiteServer.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarineWebsiteServer.WebAPI.Controllers;
@@ -15,6 +16,7 @@ public class AuthController(
         return StatusCode(response.StatusCode, response);
     }
 
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpPost]
     public async Task<IActionResult> ChangePassword(ChangePasswordDto request, CancellationToken cancellationToken)
     {

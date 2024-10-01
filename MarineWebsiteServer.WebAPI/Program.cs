@@ -69,6 +69,11 @@ builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<LinkRepository>();
 builder.Services.AddScoped<LinkService>();
 
+builder.Services.AddScoped<LayoutRepository>();
+builder.Services.AddScoped<LayoutService>();
+
+builder.Services.AddScoped<UserService>();
+
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 builder.Services.AddControllers();

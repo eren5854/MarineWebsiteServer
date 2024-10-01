@@ -64,6 +64,7 @@ public sealed class HomeImageService(
             FileService.FileDeleteToServer("wwwroot/Images/" + homeImage.Image);
         }
         mapper.Map(request, homeImage);
+        homeImage.Image = image;
         homeImage.UpdatedDate = DateTime.Now;
         homeImage.UpdatedBy = "Admin";
 

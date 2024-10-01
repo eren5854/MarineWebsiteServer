@@ -31,7 +31,7 @@ public sealed class ContactRepository(
 
     public async Task<Result<List<Contact>>> GetAll(CancellationToken cancellationToken)
     {
-        var contacts = await context.Contacts.Where(p => !p.IsDeleted).ToListAsync(cancellationToken);
+        var contacts = await context.Contacts.Where(p => !p.IsDeleted).OrderByDescending(o => o.CreatedDate).ToListAsync(cancellationToken);
         return Result<List<Contact>>.Succeed(contacts);
     }
 

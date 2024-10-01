@@ -2,6 +2,7 @@
 using MarineWebsiteServer.WebAPI.DTOs.HomeDto;
 using MarineWebsiteServer.WebAPI.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarineWebsiteServer.WebAPI.Controllers;
@@ -13,6 +14,7 @@ public class HomesController(
     //{
     //}
 
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateHomeDto request, CancellationToken cancellationToken)
     {
@@ -27,6 +29,7 @@ public class HomesController(
         return StatusCode(response.StatusCode, response);
     }
 
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpPost]
     public async Task<IActionResult> Update(UpdateHomeDto request, CancellationToken cancellationToken)
     {
@@ -34,6 +37,7 @@ public class HomesController(
         return StatusCode(response.StatusCode, response);
     }
 
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpGet]
     public async Task<IActionResult> DeleteById(Guid Id, CancellationToken cancellationToken)
     {
